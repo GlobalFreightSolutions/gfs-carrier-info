@@ -3,65 +3,81 @@
 <link rel="import" href="../gfs-carrier-icon/gfs-carrier-icon.html" />
 
 <dom-module id="gfs-carrier-info">
-	<style>
-		div, span, h3 {
-			font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
-		}
-		 #container {
-			 display: flex;
-			 padding: 10px;
-			 /*margin: 10px;*/
-			 background-color: #FAFAFA;
-			 border-radius: 3px;
-			 box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-			 border: 1px solid #FAFAFA;
-			 font-size: 0.75em;
-		 }
-		gfs-carrier-icon {
-			margin-right: 0.4em;
-		}
-		h3 {
-			margin-top: 0.2em;
-			margin-left: 0.4em;
-		}
-		.infoArea {
-			width: 210px
-		}
-		.infoText {
-			padding-left: 1em;
-			padding-right: 0em;
-			padding-bottom: 0.2em;
-		}
-		.infoLink {
-			margin: 15px 0 5px;
-			float: right;
-		}
-		.button {
-			background-color: #555555;
-			border: none;
-			color: white;
-			margin-top: 4px;
-			padding: 8px 20px;
-			text-align: center;
-			text-decoration: none;
-			font-size: 16px;
-			float: right;
-		}
-	</style>
-
 	<template>
-		<div id="container">
-			<gfs-carrier-icon carrier-code="dpdPickup" icon-size="large"></gfs-carrier-icon>
+		<style>
+			div, span, h3 {
+				font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+			}
 
-			<div class="infoArea">
+			#container {
+				display: flex;
+				padding: 10px;
+				/*margin: 10px;*/
+				background-color: #FAFAFA;
+				border-radius: 3px;
+				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+				border: 1px solid #FAFAFA;
+				font-size: 0.75em;
+			}
 
-				<h3>{{title}}</h3>
-				<div class="infoText">{{info}}</div>
-				<a class="infoLink" href="{{url}}">More information</a>
+			gfs-carrier-icon {
+				margin-right: 0.4em;
+			}
+
+			h3 {
+				margin-top: 0.2em;
+				margin-left: 0.4em;
+			}
+
+			.icon {
+				width: 95px;
+				display: inline-block;
+			}
+
+			.infoArea {
+				width: 210px;
+			}
+
+			.infoText {
+				padding-left: 1em;
+				padding-right: 0em;
+				padding-bottom: 0.2em;
+			}
+
+			.infoLink {
+				margin: 15px 0 5px;
+				float: right;
+			}
+
+			.button {
+				background-color: #555555;
+				border: none;
+				color: white;
+				margin-top: 4px;
+				padding: 8px 20px;
+				text-align: center;
+				text-decoration: none;
+				font-size: 16px;
+				float: right;
+			}
+		</style>
+
+		<template is="dom-if" is="dom-if" if="{{_visible}}">
+			<div id="container">
+				<div class="icon">
+					<img src="/Images/gfsCarriers/medium/{{droppointData.providerName}}.gif" height="60" />
+				</div>
+
+				<div class="infoArea">
+
+					<h3>{{droppointData.providerName}}</h3>
+					<div class="infoText">{{info}}</div>
+					<a class="infoLink" href="{{url}}" target="_blank">More information</a>
+				</div>
 			</div>
-		</div>
 
 
+		</template>
 	</template>
 
 	<script>
@@ -71,23 +87,29 @@
 
 			properties: {
 				title: {
-					type: String,
-					value: "DPD Pickup"
+					type: String
 				},
 				info: {
-					type: String,
-					value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you.  For peace of mind you will be required to provide a form of photo ID on collection.  Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
+					type: String
 				},
 				url: {
-					type: String,
-					value: "https://www.dpd.com/nl_privatecustomers#!pickup"
+					type: String
+				},
+				_visible: {
+					type: Boolean,
+					value: false
 				}
 			},
 			listeners: {
-            
-			},
-			ready: function() {
 
+			},
+			ready: function () {
+				window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
+			},
+			onDroppointChanged: function (e) {
+				this.set("droppointData", e.detail);
+				this._visible = this.droppointData.chosen;
+				this.droppointData.providerName = this.droppointData.providerName;
 			}
 		});
 	</script>
