@@ -39,9 +39,8 @@
 			}
 
 			.infoText {
-				padding-left: 1em;
-				padding-right: 0em;
-				padding-bottom: 0.2em;
+				font-size: 11px;
+				padding: 0 0 0 11px
 			}
 
 			.infoLink {
@@ -69,8 +68,7 @@
 				</div>
 
 				<div class="infoArea">
-
-					<h3>{{droppointData.providerName}}</h3>
+					<h3>{{title}}</h3>
 					<div class="infoText">{{info}}</div>
 					<a class="infoLink" href="{{url}}" target="_blank">More information</a>
 				</div>
@@ -86,15 +84,99 @@
 			is: "gfs-carrier-info",
 
 			properties: {
+				// global service info
 				title: {
-					type: String
+					type: String,
+					value: ""
 				},
 				info: {
-					type: String
+					type: String,
+					value: ""
 				},
 				url: {
-					type: String
+					type: String,
+					value: ""
 				},
+				/* 
+					Carrier service info
+					Set the following option at gfs-carrier-info element if you need to override the defaults
+						dpd-info-text=""
+						dpd-url=""
+						inpost-info-text=""
+						inpost-url=""
+						doddle-info-text=""
+						doodle-url="""
+						hermes-info-text=""
+						hermes-url=""
+						collectplus-info-text=""
+						collectplus-url=""
+				*/
+				/* DPD */
+				dpdTitle: {
+					type: String,
+					value: "DPD Pickup"
+				},
+				dpdInfoText: {
+					type: String,
+					value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you. For peace of mind you will be required to provide a form of photo ID on collection. Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
+				},
+				dpdUrl: {
+					type: String,
+					value: "https://www.dpd.com/nl_privatecustomers#!pickup"
+				},
+				/* Inpost */
+				inpostTitle: {
+					type: String,
+					value: "Inpost Locker"
+				},
+				inpostInfoText: {
+					type: String,
+					value: "InPost has a national network of fully automated parcel lockers that are accessible 24/7, meaning no more queues or waiting in, enabling customers to collect, send and return parcels at their earliest convenience. All of InPost's 1,000 + lockers are located at a variety of safe and secure locations.  Don't forget to provide your mobile number at checkout so that InPost can tell you when your parcel is ready to be collected."
+				},
+				inpostUrl: {
+					type: String,
+					value: "https://inpost.co.uk"
+				},
+				/* Doddle */
+				doddleTitle: {
+					type: String,
+					value: "Doddle Store"
+				},
+				doddleInfoText: {
+					type: String,
+					value: "Doddle fits in with your life. No more waiting. No more missed deliveries.  Doddle stores are located in and around train stations across the UK. They’re open early until late, so you can send, collect or return your parcel whenever you’re passing.  Don't forget to provide your mobile number at checkout so that Doddle can tell you when your parcel is ready to be collected."
+				},
+				doddleUrl: {
+					type: String,
+					value: "https://www.doddle.com"
+				},
+				/* Hemres */
+				hermesTitle: {
+					type: String,
+					value: "Hermes ParcelShop"
+				},
+				hermesInfoText: {
+					type: String,
+					value: "Hermes ParcelShop provides you with a new, more flexible option for receiving your order. Hermes operate a network of over 4,500 nationwide ParcelShops which are open early till late, 7 days a week.  Don't forget to provide your mobile number at checkout so that Hermes can tell you when your parcel is ready to be collected."
+				},
+				hermesUrl: {
+					type: String,
+					value: "https://www.myhermes.co.uk"
+				},
+				/* CollectPlus */
+				collectplusTitle: {
+					type: String,
+					value: "Collect+ Store"
+				},
+				collectplusInfoText: {
+					type: String,
+					value: "Collect+ have thousands of conveniently located parcel stores across the UK, it has never been so easy pick up your orders.  Our store network is made up of over 5,800 newsagents, convenience stores, supermarkets and petrol stations, so wherever you are, there’s a good chance that one of our stores is nearby.  Don't forget to provide your mobile number at checkout so that Collect+ can tell you when your parcel is ready to be collected."
+				},
+				collectplusUrl: {
+					type: String,
+					value: "https://www.collectplus.co.uk"
+				},
+
 				_visible: {
 					type: Boolean,
 					value: false
@@ -109,7 +191,20 @@
 			onDroppointChanged: function (e) {
 				this.set("droppointData", e.detail);
 				this._visible = this.droppointData.chosen;
-				this.droppointData.providerName = this.droppointData.providerName;
+				//this.droppointData.providerName = this.droppointData.providerName;
+
+				switch(this.droppointData.providerName) {
+					case "DPD":
+						return (this.title = this.dpdTitle) && (this.info = this.dpdInfoText) && (this.url = this.dpdUrl)
+					case "Inpost":
+						return (this.title = this.inpostTitle) && (this.info = this.inpostInfoText) && (this.url = this.inpostUrl)
+					case "Doddle":
+						return (this.title = this.doddleTitle) && (this.info = this.doddleInfoText) && (this.url = this.doddleUrl)
+					case "Hermes":
+						return (this.title = this.hermesTitle) && (this.info = this.hermesInfoText) && (this.url = this.hermesUrl)
+					case "Collect Plus":
+						return (this.title = this.collectplusTitle) && (this.info = this.collectplusInfoText) && (this.url = this.collectplusUrl) 
+				}
 			}
 		});
 	</script>
