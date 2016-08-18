@@ -2,209 +2,216 @@
 <link rel="import" href="../gfs-carrier-icon/gfs-carrier-icon.html" />
 
 <dom-module id="gfs-carrier-info">
-	<template>
-		<style>
-			div, span, h3 {
-				font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
-			}
+    <template>
+        <style>
+            div, span, h3 {
+                font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+            }
 
-			#container {
-				display: flex;
-				padding: 10px;
-				/*margin: 10px;*/
-				background-color: #FAFAFA;
-				border-radius: 3px;
-				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-				border: 1px solid #FAFAFA;
-				font-size: 0.75em;
-			}
+            #container {
+                display: flex;
+                padding: 10px;
+                /*margin: 10px;*/
+                background-color: #fff;
+                border-radius: 3px;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+                border: 1px solid #FAFAFA;
+                font-size: 0.75em;
+            }
 
-			gfs-carrier-icon {
-				margin-right: 0.4em;
-			}
+            gfs-carrier-icon {
+                margin-right: 0.4em;
+            }
 
-			h3 {
-				margin-top: 0.2em;
-				margin-left: 0.4em;
-			}
+            h3 {
+                margin-top: 0.2em;
+                margin-left: 0.4em;
+            }
 
-			.icon {
-				width: 95px;
-				display: inline-block;
-			}
+            .icon {
+                width: 95px;
+                display: inline-block;
+            }
 
-			.infoArea {
-				width: 210px;
-			}
+            .infoArea {
+                width: 210px;
+            }
 
-			.infoText {
-				font-size: 11px;
-				padding: 0 0 0 11px
-			}
+            .infoText {
+                font-size: 11px;
+                padding: 0 0 0 11px
+            }
 
-			.infoLink {
-				margin: 15px 0 5px;
-				float: right;
-			}
+            .infoLink {
+                margin: 15px 0 5px;
+                float: right;
+            }
 
-			.button {
-				background-color: #555555;
-				border: none;
-				color: white;
-				margin-top: 4px;
-				padding: 8px 20px;
-				text-align: center;
-				text-decoration: none;
-				font-size: 16px;
-				float: right;
-			}
-		</style>
+            .button {
+                background-color: #555555;
+                border: none;
+                color: white;
+                margin-top: 4px;
+                padding: 8px 20px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                float: right;
+            }
 
-		<template is="dom-if" is="dom-if" if="{{_visible}}">
-			<div id="container">
-				<div class="icon">
-					<img src="/bower_components/gfs-carrier-info/images/carriers/medium/{{droppointData.providerName}}.png" width="95" />
-				</div>
+            @media (max-width: 736px) {
 
-				<div class="infoArea">
-					<h3>{{title}}</h3>
-					<div class="infoText">{{info}}</div>
-					<a class="infoLink" href="{{url}}" target="_blank">More information</a>
-				</div>
-			</div>
+                .infoArea {
+                    width: 100%;
+                }
+            }
+        </style>
+
+        <template is="dom-if" is="dom-if" if="{{_visible}}">
+            <div id="container">
+                <div class="icon">
+                    <img src="/bower_components/gfs-carrier-info/images/carriers/medium/{{droppointData.providerName}}.png" width="95" />
+                </div>
+
+                <div class="infoArea">
+                    <h3>{{title}}</h3>
+                    <div class="infoText">{{info}}</div>
+                    <a class="infoLink" href="{{url}}" target="_blank">More information</a>
+                </div>
+            </div>
 
 
-		</template>
-	</template>
+        </template>
+    </template>
 
-	<script>
+    <script>
 
-		Polymer({
-			is: "gfs-carrier-info",
+        Polymer({
+            is: "gfs-carrier-info",
 
-			properties: {
-				// global service info
-				title: {
-					type: String,
-					value: ""
-				},
-				info: {
-					type: String,
-					value: ""
-				},
-				url: {
-					type: String,
-					value: ""
-				},
-				/* 
-					Carrier service info
-					Set the following option at gfs-carrier-info element if you need to override the defaults
-						dpd-info-text=""
-						dpd-url=""
-						inpost-info-text=""
-						inpost-url=""
-						doddle-info-text=""
-						doodle-url="""
-						hermes-info-text=""
-						hermes-url=""
-						collectplus-info-text=""
-						collectplus-url=""
-				*/
-				/* DPD */
-				dpdTitle: {
-					type: String,
-					value: "DPD Pickup"
-				},
-				dpdInfoText: {
-					type: String,
-					value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you. For peace of mind you will be required to provide a form of photo ID on collection. Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
-				},
-				dpdUrl: {
-					type: String,
-					value: "https://www.dpd.com/nl_privatecustomers#!pickup"
-				},
-				/* Inpost */
-				inpostTitle: {
-					type: String,
-					value: "Inpost Locker"
-				},
-				inpostInfoText: {
-					type: String,
-					value: "InPost has a national network of fully automated parcel lockers that are accessible 24/7, meaning no more queues or waiting in, enabling customers to collect, send and return parcels at their earliest convenience. All of InPost's 1,000 + lockers are located at a variety of safe and secure locations.  Don't forget to provide your mobile number at checkout so that InPost can tell you when your parcel is ready to be collected."
-				},
-				inpostUrl: {
-					type: String,
-					value: "https://inpost.co.uk"
-				},
-				/* Doddle */
-				doddleTitle: {
-					type: String,
-					value: "Doddle Store"
-				},
-				doddleInfoText: {
-					type: String,
-					value: "Doddle fits in with your life. No more waiting. No more missed deliveries.  Doddle stores are located in and around train stations across the UK. They’re open early until late, so you can send, collect or return your parcel whenever you’re passing.  Don't forget to provide your mobile number at checkout so that Doddle can tell you when your parcel is ready to be collected."
-				},
-				doddleUrl: {
-					type: String,
-					value: "https://www.doddle.com"
-				},
-				/* Hemres */
-				hermesTitle: {
-					type: String,
-					value: "Hermes ParcelShop"
-				},
-				hermesInfoText: {
-					type: String,
-					value: "Hermes ParcelShop provides you with a new, more flexible option for receiving your order. Hermes operate a network of over 4,500 nationwide ParcelShops which are open early till late, 7 days a week.  Don't forget to provide your mobile number at checkout so that Hermes can tell you when your parcel is ready to be collected."
-				},
-				hermesUrl: {
-					type: String,
-					value: "https://www.myhermes.co.uk"
-				},
-				/* CollectPlus */
-				collectplusTitle: {
-					type: String,
-					value: "Collect+ Store"
-				},
-				collectplusInfoText: {
-					type: String,
-					value: "Collect+ have thousands of conveniently located parcel stores across the UK, it has never been so easy pick up your orders.  Our store network is made up of over 5,800 newsagents, convenience stores, supermarkets and petrol stations, so wherever you are, there’s a good chance that one of our stores is nearby.  Don't forget to provide your mobile number at checkout so that Collect+ can tell you when your parcel is ready to be collected."
-				},
-				collectplusUrl: {
-					type: String,
-					value: "https://www.collectplus.co.uk"
-				},
+            properties: {
+                // global service info
+                title: {
+                    type: String,
+                    value: ""
+                },
+                info: {
+                    type: String,
+                    value: ""
+                },
+                url: {
+                    type: String,
+                    value: ""
+                },
+                /*
+                    Carrier service info
+                    Set the following option at gfs-carrier-info element if you need to override the defaults
+                        dpd-info-text=""
+                        dpd-url=""
+                        inpost-info-text=""
+                        inpost-url=""
+                        doddle-info-text=""
+                        doodle-url="""
+                        hermes-info-text=""
+                        hermes-url=""
+                        collectplus-info-text=""
+                        collectplus-url=""
+                */
+                /* DPD */
+                dpdTitle: {
+                    type: String,
+                    value: "DPD Pickup"
+                },
+                dpdInfoText: {
+                    type: String,
+                    value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you. For peace of mind you will be required to provide a form of photo ID on collection. Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
+                },
+                dpdUrl: {
+                    type: String,
+                    value: "https://www.dpd.com/nl_privatecustomers#!pickup"
+                },
+                /* Inpost */
+                inpostTitle: {
+                    type: String,
+                    value: "Inpost Locker"
+                },
+                inpostInfoText: {
+                    type: String,
+                    value: "InPost has a national network of fully automated parcel lockers that are accessible 24/7, meaning no more queues or waiting in, enabling customers to collect, send and return parcels at their earliest convenience. All of InPost's 1,000 + lockers are located at a variety of safe and secure locations.  Don't forget to provide your mobile number at checkout so that InPost can tell you when your parcel is ready to be collected."
+                },
+                inpostUrl: {
+                    type: String,
+                    value: "https://inpost.co.uk"
+                },
+                /* Doddle */
+                doddleTitle: {
+                    type: String,
+                    value: "Doddle Store"
+                },
+                doddleInfoText: {
+                    type: String,
+                    value: "Doddle fits in with your life. No more waiting. No more missed deliveries.  Doddle stores are located in and around train stations across the UK. They’re open early until late, so you can send, collect or return your parcel whenever you’re passing.  Don't forget to provide your mobile number at checkout so that Doddle can tell you when your parcel is ready to be collected."
+                },
+                doddleUrl: {
+                    type: String,
+                    value: "https://www.doddle.com"
+                },
+                /* Hemres */
+                hermesTitle: {
+                    type: String,
+                    value: "Hermes ParcelShop"
+                },
+                hermesInfoText: {
+                    type: String,
+                    value: "Hermes ParcelShop provides you with a new, more flexible option for receiving your order. Hermes operate a network of over 4,500 nationwide ParcelShops which are open early till late, 7 days a week.  Don't forget to provide your mobile number at checkout so that Hermes can tell you when your parcel is ready to be collected."
+                },
+                hermesUrl: {
+                    type: String,
+                    value: "https://www.myhermes.co.uk"
+                },
+                /* CollectPlus */
+                collectplusTitle: {
+                    type: String,
+                    value: "Collect+ Store"
+                },
+                collectplusInfoText: {
+                    type: String,
+                    value: "Collect+ have thousands of conveniently located parcel stores across the UK, it has never been so easy pick up your orders.  Our store network is made up of over 5,800 newsagents, convenience stores, supermarkets and petrol stations, so wherever you are, there’s a good chance that one of our stores is nearby.  Don't forget to provide your mobile number at checkout so that Collect+ can tell you when your parcel is ready to be collected."
+                },
+                collectplusUrl: {
+                    type: String,
+                    value: "https://www.collectplus.co.uk"
+                },
 
-				_visible: {
-					type: Boolean,
-					value: false
-				}
-			},
-			listeners: {
+                _visible: {
+                    type: Boolean,
+                    value: false
+                }
+            },
+            listeners: {
 
-			},
-			ready: function () {
-				window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
-			},
-			onDroppointChanged: function (e) {
-				this.set("droppointData", e.detail);
-				this._visible = this.droppointData.chosen;
-				//this.droppointData.providerName = this.droppointData.providerName;
+            },
+            ready: function () {
+                window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
+            },
+            onDroppointChanged: function (e) {
+                this.set("droppointData", e.detail);
+                this._visible = this.droppointData.chosen;
+                //this.droppointData.providerName = this.droppointData.providerName;
 
-				switch(this.droppointData.providerName) {
-					case "DPD":
-						return (this.title = this.dpdTitle) && (this.info = this.dpdInfoText) && (this.url = this.dpdUrl)
-					case "Inpost":
-						return (this.title = this.inpostTitle) && (this.info = this.inpostInfoText) && (this.url = this.inpostUrl)
-					case "Doddle":
-						return (this.title = this.doddleTitle) && (this.info = this.doddleInfoText) && (this.url = this.doddleUrl)
-					case "Hermes":
-						return (this.title = this.hermesTitle) && (this.info = this.hermesInfoText) && (this.url = this.hermesUrl)
-					case "Collect Plus":
-						return (this.title = this.collectplusTitle) && (this.info = this.collectplusInfoText) && (this.url = this.collectplusUrl) 
-				}
-			}
-		});
-	</script>
+                switch(this.droppointData.providerName) {
+                    case "DPD":
+                        return (this.title = this.dpdTitle) && (this.info = this.dpdInfoText) && (this.url = this.dpdUrl)
+                    case "Inpost":
+                        return (this.title = this.inpostTitle) && (this.info = this.inpostInfoText) && (this.url = this.inpostUrl)
+                    case "Doddle":
+                        return (this.title = this.doddleTitle) && (this.info = this.doddleInfoText) && (this.url = this.doddleUrl)
+                    case "Hermes":
+                        return (this.title = this.hermesTitle) && (this.info = this.hermesInfoText) && (this.url = this.hermesUrl)
+                    case "Collect Plus":
+                        return (this.title = this.collectplusTitle) && (this.info = this.collectplusInfoText) && (this.url = this.collectplusUrl)
+                }
+            }
+        });
+    </script>
 </dom-module>
