@@ -1,6 +1,13 @@
 ﻿<link rel="import" href="../polymer/polymer.html" />
 <link rel="import" href="../gfs-carrier-icon/gfs-carrier-icon.html" />
 
+<!--
+`gfs-carrier-info`
+A polymer widget for displaying information on a carrier
+
+@demo demo/index.html 
+-->
+
 <dom-module id="gfs-carrier-info">
 	<template>
 		<style>
@@ -60,21 +67,17 @@
 			}
 		</style>
 
-		<template is="dom-if" is="dom-if" if="{{_visible}}">
-			<div id="container">
-				<div class="icon">
-					<img src="/bower_components/gfs-carrier-info/images/carriers/medium/{{droppointData.providerName}}.png" width="95" />
-				</div>
-
-				<div class="infoArea">
-					<h3>{{title}}</h3>
-					<div class="infoText">{{info}}</div>
-					<a class="infoLink" href="{{url}}" target="_blank">More information</a>
-				</div>
+		<div id="container" hidden$="{{!visible}}">
+			<div class="icon">
+				<img src="/bower_components/gfs-carrier-info/images/carriers/medium/{{providerName}}.png" width="95" />
 			</div>
 
-
-		</template>
+			<div class="infoArea">
+				<h3>{{_title}}</h3>
+				<div class="infoText">{{_info}}</div>
+				<a class="infoLink" href="{{_url}}" target="_blank">More information</a>
+			</div>
+		</div>
 	</template>
 
 	<script>
@@ -84,33 +87,18 @@
 
 			properties: {
 				// global service info
-				title: {
+				_title: {
 					type: String,
-					value: ""
+					computed: "_computeTitle(providerName)"
 				},
-				info: {
+				_info: {
 					type: String,
-					value: ""
+					computed: "_computeInfo(providerName)"
 				},
-				url: {
+				_url: {
 					type: String,
-					value: ""
+					computed: "_computeUrl(providerName)"
 				},
-				/* 
-					Carrier service info
-					Set the following option at gfs-carrier-info element if you need to override the defaults
-						dpd-info-text=""
-						dpd-url=""
-						inpost-info-text=""
-						inpost-url=""
-						doddle-info-text=""
-						doodle-url="""
-						hermes-info-text=""
-						hermes-url=""
-						collectplus-info-text=""
-						collectplus-url=""
-				*/
-				/* DPD */
 				dpdTitle: {
 					type: String,
 					value: "DPD Pickup"
@@ -123,7 +111,6 @@
 					type: String,
 					value: "https://www.dpd.com/nl_privatecustomers#!pickup"
 				},
-				/* Inpost */
 				inpostTitle: {
 					type: String,
 					value: "Inpost Locker"
@@ -136,7 +123,6 @@
 					type: String,
 					value: "https://inpost.co.uk"
 				},
-				/* Doddle */
 				doddleTitle: {
 					type: String,
 					value: "Doddle Store"
@@ -149,7 +135,6 @@
 					type: String,
 					value: "https://www.doddle.com"
 				},
-				/* Hemres */
 				hermesTitle: {
 					type: String,
 					value: "Hermes ParcelShop"
@@ -162,7 +147,6 @@
 					type: String,
 					value: "https://www.myhermes.co.uk"
 				},
-				/* CollectPlus */
 				collectplusTitle: {
 					type: String,
 					value: "Collect+ Store"
@@ -175,8 +159,10 @@
 					type: String,
 					value: "https://www.collectplus.co.uk"
 				},
-
-				_visible: {
+				providerName:{
+					type: String
+				},
+				visible: {
 					type: Boolean,
 					value: false
 				}
@@ -189,20 +175,55 @@
 			},
 			onDroppointChanged: function (e) {
 				this.set("droppointData", e.detail);
-				this._visible = this.droppointData.chosen;
-				//this.droppointData.providerName = this.droppointData.providerName;
-
-				switch(this.droppointData.providerName) {
+				this.visible = this.droppointData.chosen;
+				this.providerName = this.droppointData.providerName
+			},
+			_computeTitle: function (providerName) {
+				switch(providerName) {
 					case "DPD":
-						return (this.title = this.dpdTitle) && (this.info = this.dpdInfoText) && (this.url = this.dpdUrl)
+						return this.dpdTitle;
 					case "Inpost":
-						return (this.title = this.inpostTitle) && (this.info = this.inpostInfoText) && (this.url = this.inpostUrl)
+						return this.inpostTitle;
 					case "Doddle":
-						return (this.title = this.doddleTitle) && (this.info = this.doddleInfoText) && (this.url = this.doddleUrl)
+						return
 					case "Hermes":
-						return (this.title = this.hermesTitle) && (this.info = this.hermesInfoText) && (this.url = this.hermesUrl)
+						return this.hermesTitle;
 					case "Collect Plus":
-						return (this.title = this.collectplusTitle) && (this.info = this.collectplusInfoText) && (this.url = this.collectplusUrl) 
+						return this.collectplusTitle;
+					default:
+						return "Unknown";
+				}
+			},
+			_computeInfo: function (providerName) {
+				switch(providerName) {
+					case "DPD":
+						return this.dpdInfoText;
+					case "Inpost":
+						return this.inpostInfoText;
+					case "Doddle":
+						return this.doddleInfoText;
+					case "Hermes":
+						return this.hermesInfoText;
+					case "Collect Plus":
+						return this.collectplusInfoText;
+					default:
+						return "Unknown";
+				}
+			},
+			_computeUrl: function (providerName) {
+				switch(providerName) {
+					case "DPD":
+						return this.dpdUrl;
+					case "Inpost":
+						return this.inpostUrl;
+					case "Doddle":
+						return this.doddleUrl;
+					case "Hermes":
+						return this.hermesUrl
+					case "Collect Plus":
+						return this.collectplusUrl
+					default:
+						return "";
 				}
 			}
 		});
