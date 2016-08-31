@@ -68,7 +68,7 @@ A polymer widget for displaying information on a carrier
 
 		<div id="container" hidden$="{{!visible}}">
 			<div class="icon">
-				<img src="{{_icon}}" width="95" />
+				<gfs-carrier-icon carrier-code="{{_icon}}"></gfs-carrier-icon>
 			</div>
 
 			<div class="infoArea">
@@ -86,9 +86,10 @@ A polymer widget for displaying information on a carrier
 
 			properties: {
 				// global service info
-                _icon: {
+				_icon: {
 					type: String,
-					computed: "_computeIcon(providerLogo, providerName)"
+					value: "dpd",
+					computed: "_computeIcon(providerName, countryCode)"
 				},
 				_title: {
 					type: String,
@@ -100,7 +101,7 @@ A polymer widget for displaying information on a carrier
 				},
 				_url: {
 					type: String,
-					computed: "_computeUrl(providerName)"
+					computed: "_computeUrl(providerName, countryCode)"
 				},
 				dpdTitle: {
 					type: String,
@@ -165,9 +166,6 @@ A polymer widget for displaying information on a carrier
 				providerName:{
 					type: String
 				},
-				providerLogo: {
-					type: String
-				},
 				visible: {
 					type: Boolean,
 					value: false
@@ -178,26 +176,19 @@ A polymer widget for displaying information on a carrier
 			},
 			ready: function () {
 				window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
+				window.addEventListener('hide-collectionInfo', this.hideCollectionInfo.bind(this), false);
 			},
 			onDroppointChanged: function (e) {
 				this.set("droppointData", e.detail);
 				this.visible = this.droppointData.chosen;
 				this.providerName = this.droppointData.providerName
-				this.providerLogo = this.droppointData.geoLocation.countryCode;
+				this.countryCode = this.droppointData.geoLocation.countryCode;
 			},
-			_computeIcon: function(countryCode, providerName) {
-				var url = this.resolveUrl('/bower_components/gfs-carrier-info/images/carriers');
-
-				switch(countryCode) {
-					case "DE":
-						return url + '/DE/' + this.providerName + '.png';
-					case "FR":
-					case "BE":
-					case "ES":
-						return url + '/FR/' + this.providerName + '.png';
-					default:
-						return url + '/GB/' + this.providerName + '.png';
-				}
+			hideCollectionInfo: function() {
+				this.visible = false;
+			},
+			_computeIcon: function(providerName) {
+				return this._icon = providerName.replace(/\s/g, '').toLowerCase();
 			},
 			_computeTitle: function (providerName) {
 				switch(providerName) {
@@ -231,7 +222,7 @@ A polymer widget for displaying information on a carrier
 						return "Unknown";
 				}
 			},
-			_computeUrl: function (providerName) {
+			_computeUrl: function (providerName, countryCode) {
 				switch(providerName) {
 					case "DPD":
 						return this.dpdUrl;
@@ -240,7 +231,18 @@ A polymer widget for displaying information on a carrier
 					case "Doddle":
 						return this.doddleUrl;
 					case "Hermes":
-						return this.hermesUrl
+						if(countryCode === "FR") {
+							return this.hermesUrl = "http://www.mondialrelay.fr/"
+						}
+						else if(countryCode === "BE") {
+							return this.hermesUrl = "http://www.mondialrelay.be/fr-BE/";
+						}
+						else if(countryCode === "ES") {
+							return this.hermesUrl = "http://www.puntopack.es/";
+						}
+						else {
+							return this.hermesUrl
+						}
 					case "Collect Plus":
 						return this.collectplusUrl
 					default:
