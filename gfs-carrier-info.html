@@ -12,7 +12,7 @@ A polymer widget for displaying information on a carrier
 	<template>
 		<style>
 			div, span, h3 {
-				font-family: "Raleway", "Helvetica Neue", Verdana, Arial, sans-serif;
+				font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
 			}
 
 			#container {
@@ -86,23 +86,13 @@ A polymer widget for displaying information on a carrier
 
 			properties: {
 				// global service info
-				_icon: {
-					type: String,
-					value: "dpd",
-					computed: "_computeIcon(providerName, countryCode)"
-				},
-				_title: {
-					type: String,
-					computed: "_computeTitle(providerName)"
-				},
-				_info: {
-					type: String,
-					computed: "_computeInfo(providerName)"
-				},
-				_url: {
-					type: String,
-					computed: "_computeUrl(providerName, countryCode)"
-				},
+			    providerName: {
+			        type: String
+			    },
+			    visible: {
+			        type: Boolean,
+			        value: false
+			    },
 				dpdTitle: {
 					type: String,
 					value: "DPD Pickup"
@@ -163,12 +153,23 @@ A polymer widget for displaying information on a carrier
 					type: String,
 					value: "https://www.collectplus.co.uk"
 				},
-				providerName:{
-					type: String
+				
+				_icon: {
+				    type: String,
+				    value: "dpd",
+				    computed: "_computeIcon(providerName, countryCode)"
 				},
-				visible: {
-					type: Boolean,
-					value: false
+				_title: {
+				    type: String,
+				    computed: "_computeTitle(providerName)"
+				},
+				_info: {
+				    type: String,
+				    computed: "_computeInfo(providerName)"
+				},
+				_url: {
+				    type: String,
+				    computed: "_computeUrl(providerName, countryCode)"
 				}
 			},
 			listeners: {
@@ -181,7 +182,7 @@ A polymer widget for displaying information on a carrier
 			onDroppointChanged: function (e) {
 				this.set("droppointData", e.detail);
 				this.visible = this.droppointData.chosen;
-				this.providerName = this.droppointData.providerName
+				this.providerName = this.droppointData.providerName;
 				this.countryCode = this.droppointData.geoLocation.countryCode;
 			},
 			hideCollectionInfo: function() {
@@ -191,46 +192,46 @@ A polymer widget for displaying information on a carrier
 				return this._icon = providerName.replace(/\s/g, '').toLowerCase();
 			},
 			_computeTitle: function (providerName) {
-				switch(providerName) {
-					case "DPD":
+			    switch (providerName.toLowerCase()) {
+					case "dpd":
 						return this.dpdTitle;
-					case "Inpost":
+					case "inpost":
 						return this.inpostTitle;
-					case "Doddle":
+					case "doddle":
 						return this.doddleTitle;
-					case "Hermes":
+					case "hermes":
 						return this.hermesTitle;
-					case "Collect Plus":
+					case "collect plus":
 						return this.collectplusTitle;
 					default:
 						return "Unknown";
 				}
 			},
 			_computeInfo: function (providerName) {
-				switch(providerName) {
-					case "DPD":
+			    switch (providerName.toLowerCase()) {
+				    case "dpd":
 						return this.dpdInfoText;
-					case "Inpost":
+				    case "inpost":
 						return this.inpostInfoText;
-					case "Doddle":
+				    case "doddle":
 						return this.doddleInfoText;
-					case "Hermes":
+				    case "hermes":
 						return this.hermesInfoText;
-					case "Collect Plus":
+				    case "collect plus":
 						return this.collectplusInfoText;
 					default:
 						return "Unknown";
 				}
 			},
 			_computeUrl: function (providerName, countryCode) {
-				switch(providerName) {
-					case "DPD":
+			    switch (providerName.toLowerCase()) {
+				    case "dpd":
 						return this.dpdUrl;
-					case "Inpost":
+				    case "inpost":
 						return this.inpostUrl;
-					case "Doddle":
+				    case "doddle":
 						return this.doddleUrl;
-					case "Hermes":
+				    case "hermes":
 						if(countryCode === "FR") {
 							return this.hermesUrl = "http://www.mondialrelay.fr/"
 						}
@@ -243,7 +244,7 @@ A polymer widget for displaying information on a carrier
 						else {
 							return this.hermesUrl
 						}
-					case "Collect Plus":
+				    case "collect plus":
 						return this.collectplusUrl
 					default:
 						return "";
