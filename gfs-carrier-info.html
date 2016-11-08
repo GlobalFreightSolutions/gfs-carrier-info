@@ -68,7 +68,7 @@ A polymer widget for displaying information on a carrier
 
 		<div id="container" hidden$="{{!visible}}">
 			<div class="icon">
-				<gfs-carrier-icon carrier-code="{{_icon}}"></gfs-carrier-icon>
+				<gfs-carrier-icon carrier-name="{{_icon}}"></gfs-carrier-icon>
 			</div>
 
 			<div class="infoArea">
@@ -189,7 +189,7 @@ A polymer widget for displaying information on a carrier
 				this.visible = false;
 			},
 			_computeIcon: function(providerName) {
-				return this._icon = providerName.replace(/\s/g, '').toLowerCase();
+			    return this._icon = providerName.replace(/\s/g, '').toLowerCase();
 			},
 			_computeTitle: function (providerName) {
 			    switch (providerName.toLowerCase()) {
