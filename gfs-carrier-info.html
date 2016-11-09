@@ -68,7 +68,7 @@ A polymer widget for displaying information on a carrier
 
 		<div id="container" hidden$="{{!visible}}">
 			<div class="icon">
-				<gfs-carrier-icon carrier-name="{{_icon}}"></gfs-carrier-icon>
+				<gfs-carrier-icon carrier-name="{{_icon}}" country-code="{{countryCode}}"></gfs-carrier-icon>
 			</div>
 
 			<div class="infoArea">
@@ -85,8 +85,10 @@ A polymer widget for displaying information on a carrier
 			is: "gfs-carrier-info",
 
 			properties: {
-				// global service info
 			    providerName: {
+			        type: String
+			    },
+			    countryCode: {
 			        type: String
 			    },
 			    visible: {
