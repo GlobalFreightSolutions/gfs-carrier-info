@@ -163,7 +163,7 @@ A polymer widget for displaying information on a carrier
 				},
 				_title: {
 				    type: String,
-				    computed: "_computeTitle(providerName)"
+				    computed: "_computeTitle(providerName, countryCode)"
 				},
 				_info: {
 				    type: String,
@@ -193,7 +193,7 @@ A polymer widget for displaying information on a carrier
 			_computeIcon: function(providerName) {
 			    return this._icon = providerName.replace(/\s/g, '').toLowerCase();
 			},
-			_computeTitle: function (providerName) {
+			_computeTitle: function (providerName, countryCode) {
 			    switch (providerName.toLowerCase()) {
 					case "dpd":
 						return this.dpdTitle;
@@ -202,7 +202,12 @@ A polymer widget for displaying information on a carrier
 					case "doddle":
 						return this.doddleTitle;
 					case "hermes":
-						return this.hermesTitle;
+					    if (countryCode === "FR" || countryCode === "BE" || countryCode === "ES") {
+					        return this.hermesTitle = "Mondial Relay";
+					    }
+					    else {
+					        return this.hermesTitle;
+					    }
 					case "collect plus":
 						return this.collectplusTitle;
 					default:
