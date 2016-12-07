@@ -10,4 +10,4 @@ The `gfs-carrier-info` widget is used to display a carrier icon, service descrip
 </gfs-carrier-info>
 ```
 
-More info and all the available properties can be found at [GFS widget portal](http://gfsdeveloperportal.azurewebsites.net/documentation/gfs-checkout/the-gfs-checkout-widgets/the-carrier-information-widget/ "The Carrier Information Widget")
+More info and all the available properties can be found at [GFS widget portal](http://gfsdeveloperportal.azurewebsites.net/documentation/gfs-checkout/the-gfs-checkout-widgets/carrier-information-widget/ "The Carrier Information Widget")
