@@ -186,16 +186,24 @@ A polymer widget for displaying information on a carrier
 				this.visible = this.droppointData.chosen;
 				this.providerName = this.droppointData.providerName;
 				this.countryCode = this.droppointData.geoLocation.countryCode;
+
+				if (this.providerName === 'DPD') {
+				    this.providerName = 'dpdpickup'
+				}
 			},
 			hideCollectionInfo: function() {
 				this.visible = false;
 			},
-			_computeIcon: function(providerName) {
+			_computeIcon: function (providerName) {
+			    if (providerName === 'DPD') {
+			        providerName = 'dpdpickup'
+			    }
+
 			    return this._icon = providerName.replace(/\s/g, '').toLowerCase();
 			},
 			_computeTitle: function (providerName, countryCode) {
 			    switch (providerName.toLowerCase()) {
-					case "dpd":
+			        case "dpdpickup":
 						return this.dpdTitle;
 					case "inpost":
 						return this.inpostTitle;
@@ -216,7 +224,7 @@ A polymer widget for displaying information on a carrier
 			},
 			_computeInfo: function (providerName) {
 			    switch (providerName.toLowerCase()) {
-				    case "dpd":
+			        case "dpdpickup":
 						return this.dpdInfoText;
 				    case "inpost":
 						return this.inpostInfoText;
@@ -232,7 +240,7 @@ A polymer widget for displaying information on a carrier
 			},
 			_computeUrl: function (providerName, countryCode) {
 			    switch (providerName.toLowerCase()) {
-				    case "dpd":
+			        case "dpdpickup":
 						return this.dpdUrl;
 				    case "inpost":
 						return this.inpostUrl;
