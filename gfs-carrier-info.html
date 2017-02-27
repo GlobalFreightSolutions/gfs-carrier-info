@@ -95,18 +95,38 @@ A polymer widget for displaying information on a carrier
 			        type: Boolean,
 			        value: false
 			    },
-				dpdTitle: {
-					type: String,
-					value: "DPD Pickup"
-				},
-				dpdInfoText: {
-					type: String,
-					value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you. For peace of mind you will be required to provide a form of photo ID on collection. Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
-				},
-				dpdUrl: {
-					type: String,
-					value: "https://www.dpd.co.uk/content/products_services/dpd_pickup.jsp"
-				},
+			    dpdTitle: {
+			        type: String,
+			        value: "DPD"
+			    },
+			    dpdInfoText: {
+			        type: String,
+			        value: "DPD is one of the UK's leading time-critical carriers and can satisfy all your distribution needs, whether your consignments are for the UK or elsewhere in the world. Integrating our own extensive UK network with our unrivalled ground-based service to Europe and Air Express service to the rest of the world, we are well placed to satisfy all your distribution and logistics needs."
+			    },
+			    dpdUrl: {
+			        type: String,
+			        value: "https://www.dpd.co.uk/"
+			    },
+			    dpdVideo: {
+			        type: String,
+			        // value: "about:blank"
+			    },
+			    dpdPickupTitle: {
+			        type: String,
+			        value: "DPD Pickup"
+			    },
+			    dpdPickupInfoText: {
+			        type: String,
+			        value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you. For peace of mind you will be required to provide a form of photo ID on collection. Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
+			    },
+			    dpdPickupUrl: {
+			        type: String,
+			        value: "https://www.dpd.co.uk/content/products_services/dpd_pickup.jsp"
+			    },
+			    dpdPickupVideo: {
+			        type: String,
+			        // value: "about:blank"
+			    },
 				inpostTitle: {
 					type: String,
 					value: "Inpost Locker"
@@ -155,7 +175,6 @@ A polymer widget for displaying information on a carrier
 					type: String,
 					value: "https://www.collectplus.co.uk"
 				},
-				
 				_icon: {
 				    type: String,
 				    value: "dpd",
@@ -188,26 +207,21 @@ A polymer widget for displaying information on a carrier
 				this.countryCode = this.droppointData.geoLocation.countryCode;
 
 				if (this.providerName === 'DPD') {
-				    this.providerName = 'dpdpickupinfo'
+				    this.providerName = 'dpdpickup'
 				}
 			},
 			hideCollectionInfo: function() {
 				this.visible = false;
 			},
 			_computeIcon: function (providerName, countryCode) {
-			    if (providerName === 'DPD') {
-			        providerName = 'dpdpickupinfo'
-			    }
-
-			    return this._icon = providerName.replace(/\s/g, '').toLowerCase();
-
+			    return this._icon = providerName.replace(/[\s\_\-]/g, '').toLowerCase();
 			},
 			_computeTitle: function (providerName, countryCode) {
-			    switch (providerName.toLowerCase()) {
+			    switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
+			        case "dpd":
+			            return this.dpdTitle;
 			        case "dpdpickup":
-			            return this.dpdTitle;
-			        case "dpdpickupinfo":
-			            return this.dpdTitle;
+			            return this.dpdPickupTitle;
 					case "inpost":
 						return this.inpostTitle;
 					case "doddle":
@@ -219,36 +233,36 @@ A polymer widget for displaying information on a carrier
 					    else {
 					        return this.hermesTitle;
 					    }
-					case "collect plus":
+					case "collectplus":
 						return this.collectplusTitle;
 					default:
 						return "Unknown";
 				}
 			},
 			_computeInfo: function (providerName) {
-			    switch (providerName.toLowerCase()) {
+			    switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
+			        case "dpd":
+			            return this.dpdInfoText;
 			        case "dpdpickup":
-			            return this.dpdInfoText;
-			        case "dpdpickupinfo":
-			            return this.dpdInfoText;
+			            return this.dpdPickupInfoText;
 				    case "inpost":
 						return this.inpostInfoText;
 				    case "doddle":
 						return this.doddleInfoText;
 				    case "hermes":
 						return this.hermesInfoText;
-				    case "collect plus":
+				    case "collectplus":
 						return this.collectplusInfoText;
 					default:
 						return "Unknown";
 				}
 			},
 			_computeUrl: function (providerName, countryCode) {
-			    switch (providerName.toLowerCase()) {
+			    switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
+			        case "dpd":
+			            return this.dpdUrl;
 			        case "dpdpickup":
-			            return this.dpdUrl;
-			        case "dpdpickupinfo":
-			            return this.dpdUrl;
+			            return this.dpdPickupUrl;
 				    case "inpost":
 						return this.inpostUrl;
 				    case "doddle":
@@ -266,7 +280,7 @@ A polymer widget for displaying information on a carrier
 						else {
 							return this.hermesUrl
 						}
-				    case "collect plus":
+				    case "collectplus":
 						return this.collectplusUrl
 					default:
 						return "";
