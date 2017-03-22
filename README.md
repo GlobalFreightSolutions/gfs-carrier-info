@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info.svg?branch=travis)](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info)
+
+
 ### &lt;gfs-carrier-info&gt;
 
 The `gfs-carrier-info` widget is used to display a carrier icon, service description and further information URL for 'click and collect' styles services offered in the main Checkout widget.
