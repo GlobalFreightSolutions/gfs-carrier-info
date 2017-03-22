@@ -1,23 +1,33 @@
 {
-	"name": "gfs-carrier-info",
-	"version": "0.0.1",
-	"description": "Add a description",
-	"dependencies": {
-		"polymer": "~1.6.0",
-		"gfs-carrier-icon": "https://github.com/GlobalFreightSolutions/gfs-carrier-icon.git#master"
-	},
-	"devDependencies": {
-	    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
-		"iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
-		"web-component-tester": "^4.0.0",
-		"webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
-	},	
-	"main":"gfs-carrier-info.html",
-	"repository": {
-		"type": "git",
-		"url": "https://github.com/GlobalFreightSolutions/gfs-carrier-info.git"
-	},
-	"ignore": [
-	], 
-	"private": true
+    "name": "gfs-carrier-info",
+    "version": "0.0.1",
+    "description": "Carrier Information widget is used to display a carrier icon, service description and other information for 'click & collect' style services",
+    "authors": [
+        "Global Freight Solutions Ltd <devsupport@justshoutgfs.com>"
+    ],
+    "keywords": [
+        "carrier info",
+        "icon",
+        "gfs",
+        "checkout",
+        "polymer",
+        "web-components"
+    ],
+    "dependencies": {
+        "polymer": "~1.6.0",
+        "gfs-carrier-info": "https://github.com/GlobalFreightSolutions/gfs-carrier-info.git#master"
+    },
+    "devDependencies": {
+        "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
+        "iron-demo-helpers": "PolymerElements/iron-demo-helpers#^1.0.0",
+        "web-component-tester": "^4.0.0",
+        "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
+    },
+    "main":"gfs-carrier-info.html",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/GlobalFreightSolutions/gfs-carrier-info.git"
+    },
+    "ignore": [
+    ]
 }

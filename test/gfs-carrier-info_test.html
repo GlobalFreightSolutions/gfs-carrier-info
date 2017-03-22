@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+
+        <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="../bower_components/web-component-tester/browser.js"></script>
+
+        <link rel="import" href="../gfs-carrier-info.html">
+    </head>
+    <body>
+        <test-fixture id="gfsCarrierInfo">
+            <template>
+                <gfs-carrier-info provider-name="dpdpickupinfo" country-code="GB"></gfs-carrier-info>
+            </template>
+        </test-fixture>
+
+        <script>
+            // var elem = document.querySelector('gfs-carrier-info');
+
+            suite('gfs-carrier-info', function() {
+
+                test('instantiating the element works', function() {
+                    var element = fixture('gfsCarrierInfo');
+                    assert.equal(element.is, 'gfs-carrier-info');
+                });
+
+                test('countrycode is set to GB', function() {
+                    var element = fixture('gfsCarrierInfo');
+                    assert.equal(element.countryCode, "GB");
+                    assert.equal(element.providerName, "dpdpickupinfo");
+                });
+            });
+
+            // suite('gfs-carrier-info', function() {
+            //     var carrierInfo;
+            //
+            //     setup(function() {
+            //         carrierInfo = fixture('mp');
+            //     });
+            //
+            //     test('instantiating the element works', function() {
+            //         expect(carrierInfo).to.be.ok;
+            //     });
+            //
+            //     test('provider image should be loaded from GB folder', function() {
+            //         expect(carrierInfo.countryCode).to.be.equal("GB");
+            //     });
+            // });
+        </script>
+    </body>
+</html>

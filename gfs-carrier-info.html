@@ -107,10 +107,6 @@ A polymer widget for displaying information on a carrier
 			        type: String,
 			        value: "https://www.dpd.co.uk/"
 			    },
-			    dpdVideo: {
-			        type: String,
-			        // value: "about:blank"
-			    },
 			    dpdPickupTitle: {
 			        type: String,
 			        value: "DPD Pickup"
@@ -122,10 +118,6 @@ A polymer widget for displaying information on a carrier
 			    dpdPickupUrl: {
 			        type: String,
 			        value: "https://www.dpd.co.uk/content/products_services/dpd_pickup.jsp"
-			    },
-			    dpdPickupVideo: {
-			        type: String,
-			        // value: "about:blank"
 			    },
 				inpostTitle: {
 					type: String,
@@ -192,9 +184,6 @@ A polymer widget for displaying information on a carrier
 				    type: String,
 				    computed: "_computeUrl(providerName, countryCode)"
 				}
-			},
-			listeners: {
-
 			},
 			ready: function () {
 				window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
