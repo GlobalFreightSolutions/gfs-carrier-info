@@ -15,7 +15,7 @@
     ],
     "dependencies": {
         "polymer": "~1.6.0",
-        "gfs-carrier-info": "https://github.com/GlobalFreightSolutions/gfs-carrier-info.git#master"
+        "gfs-carrier-icon": "https://github.com/GlobalFreightSolutions/gfs-carrier-icon.git#master"
     },
     "devDependencies": {
         "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
@@ -23,7 +23,8 @@
         "web-component-tester": "^4.0.0",
         "webcomponentsjs": "webcomponents/webcomponentsjs#^0.7.0"
     },
-    "main":"gfs-carrier-info.html",
+    "main": "gfs-carrier-info.html",
+    "license": "Apache 2.0",
     "repository": {
         "type": "git",
         "url": "https://github.com/GlobalFreightSolutions/gfs-carrier-info.git"
