@@ -1,9 +1,24 @@
-[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info.svg?branch=travis)](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info)
+[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info.svg?branch=master)](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info)
 
 
-### &lt;gfs-carrier-info&gt;
+# &lt;gfs-carrier-info&gt;
+
+[Live Demo](http://codepen.io/globalfreight/pen/76c2bc927269938684d22ffbe81703e1)
 
 The `gfs-carrier-info` widget is used to display a carrier icon, service description and further information URL for 'click and collect' styles services offered in the main Checkout widget.
+
+
+## Install
+
+```bash
+# via bower
+$ bower install gfs-carrier-info
+```
+
+## Usage
+```html
+<link rel="import" href="path_to_bower_components/gfs-carrier-info/gfs-carrier-info.html" />
+```
 
 <!---
 ```
@@ -26,3 +41,8 @@ The `gfs-carrier-info` widget is used to display a carrier icon, service descrip
 ```
 
 More info and all the available properties can be found at [GFS widget portal](http://gfsdeveloperportal.azurewebsites.net/info/documentation/gfs-checkout/the-gfs-checkout-widgets/carrier-information-widget/ "The Carrier Information Widget")
+
+
+### License
+
+Apache License 2.0
