@@ -196,7 +196,7 @@ A polymer widget for displaying information on a carrier
 				this.countryCode = this.droppointData.geoLocation.countryCode;
 
 				if (this.providerName === 'DPD') {
-				    this.providerName = 'dpdpickup'
+				    this.providerName = 'dpdpickupinfo'
 				}
 			},
 			hideCollectionInfo: function() {
@@ -210,6 +210,7 @@ A polymer widget for displaying information on a carrier
 			        case "dpd":
 			            return this.dpdTitle;
 			        case "dpdpickup":
+			        case "dpdpickupinfo":
 			            return this.dpdPickupTitle;
 					case "inpost":
 						return this.inpostTitle;
@@ -233,6 +234,7 @@ A polymer widget for displaying information on a carrier
 			        case "dpd":
 			            return this.dpdInfoText;
 			        case "dpdpickup":
+			        case "dpdpickupinfo":
 			            return this.dpdPickupInfoText;
 				    case "inpost":
 						return this.inpostInfoText;
@@ -251,6 +253,7 @@ A polymer widget for displaying information on a carrier
 			        case "dpd":
 			            return this.dpdUrl;
 			        case "dpdpickup":
+			        case "dpdpickupinfo":
 			            return this.dpdPickupUrl;
 				    case "inpost":
 						return this.inpostUrl;

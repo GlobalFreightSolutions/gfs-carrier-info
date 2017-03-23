@@ -1,53 +1,45 @@
-<!doctype html>
+﻿<!doctype html>
 <html lang="en">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
-        <script src="../bower_components/webcomponentsjs/webcomponents-lite.js"></script>
-        <script src="../bower_components/web-component-tester/browser.js"></script>
+        <script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+        <script src="../../web-component-tester/browser.js"></script>
 
         <link rel="import" href="../gfs-carrier-info.html">
     </head>
     <body>
         <test-fixture id="gfsCarrierInfo">
             <template>
-                <gfs-carrier-info provider-name="dpdpickupinfo" country-code="GB"></gfs-carrier-info>
+                <gfs-carrier-info provider-name="dpdpickupinfo" country-code="GB" visible="true"></gfs-carrier-info>
             </template>
         </test-fixture>
 
         <script>
-            // var elem = document.querySelector('gfs-carrier-info');
-
-            suite('gfs-carrier-info', function() {
-
-                test('instantiating the element works', function() {
-                    var element = fixture('gfsCarrierInfo');
-                    assert.equal(element.is, 'gfs-carrier-info');
+             suite('gfs-carrier-info', function() {
+                 var gfsCarrierInfo;
+            
+                setup(function() {
+                    gfsCarrierInfo = fixture('gfsCarrierInfo');
+                });
+            
+                test('instantiating the element works', function () {
+                    expect(gfsCarrierInfo).to.be.ok;
                 });
 
-                test('countrycode is set to GB', function() {
-                    var element = fixture('gfsCarrierInfo');
-                    assert.equal(element.countryCode, "GB");
-                    assert.equal(element.providerName, "dpdpickupinfo");
+                test('instantiating the element is visible', function () {
+                    expect(gfsCarrierInfo.visible).to.be.true;
                 });
-            });
 
-            // suite('gfs-carrier-info', function() {
-            //     var carrierInfo;
-            //
-            //     setup(function() {
-            //         carrierInfo = fixture('mp');
-            //     });
-            //
-            //     test('instantiating the element works', function() {
-            //         expect(carrierInfo).to.be.ok;
-            //     });
-            //
-            //     test('provider image should be loaded from GB folder', function() {
-            //         expect(carrierInfo.countryCode).to.be.equal("GB");
-            //     });
-            // });
+                test('carrier name is DPD Pickup Info', function () {
+                    expect(gfsCarrierInfo.providerName).to.be.equal("dpdpickupinfo");
+                });
+
+                test('provider image should be loaded from GB folder', function () {
+                    expect(gfsCarrierInfo.countryCode).to.be.equal("GB");
+                });
+             });
         </script>
     </body>
 </html>
