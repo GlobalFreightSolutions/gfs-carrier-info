@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info.svg?branch=develop)](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info)
+[![Build Status](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info.svg?branch=master)](https://travis-ci.org/GlobalFreightSolutions/gfs-carrier-info)
 
 
 # &lt;gfs-carrier-info&gt;
@@ -48,7 +48,7 @@ $ bower install --save gfs-carrier-info
 </gfs-carrier-info>
 ```
 
-More info and all the available properties can be found at [GFS widget portal](http://gfsdeveloperportal.azurewebsites.net/info/documentation/gfs-checkout/the-gfs-checkout-widgets/carrier-information-widget/ "The Carrier Information Widget")
+More info and all the available properties can be found at [GFS widget portal](http://developer.justshoutgfs.com/info/documentation/gfs-checkout/the-gfs-checkout-widgets/carrier-information-widget/ "The Carrier Information Widget")
 
 
 ## License
