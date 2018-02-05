@@ -9,275 +9,275 @@ A polymer widget for displaying information on a carrier
 -->
 
 <dom-module id="gfs-carrier-info">
-	<template>
-		<style>
-			div, span, h3 {
-				font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
-			}
+    <template>
+        <style is="custom-style">
+            div, span, h3 {
+                font-family: "Helvetica Neue", Verdana, Arial, sans-serif;
+            }
 
-			#container {
-				display: flex;
-				padding: 10px;
-				background-color: #fff;
-				border-radius: 3px;
-				box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
-				border: 1px solid #FAFAFA;
-				font-size: 0.75em;
-			}
+            #container {
+                display: flex;
+                padding: 10px;
+                background-color: #fff;
+                border-radius: 3px;
+                box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
+                border: 1px solid #FAFAFA;
+                font-size: 0.75em;
+            }
 
-			gfs-carrier-icon {
-				margin-right: 0.4em;
-			}
+            gfs-carrier-icon {
+                margin-right: 0.4em;
+            }
 
-			h3 {
-				margin-top: 0.2em;
-				margin-left: 0.4em;
-			}
+            h3 {
+                margin-top: 0.2em;
+                margin-left: 0.4em;
+            }
 
-			.icon {
-				width: 95px;
-				display: inline-block;
-			}
+            .icon {
+                width: 95px;
+                display: inline-block;
+            }
 
-			.infoArea {
-				width: 210px;
-			}
+            .infoArea {
+                width: 210px;
+            }
 
-			.infoText {
-				font-size: 11px;
-				padding: 0 0 0 11px
-			}
+            .infoText {
+                font-size: 11px;
+                padding: 0 0 0 11px
+            }
 
-			.infoLink {
-				margin: 15px 0 5px;
-				float: right;
-			}
+            .infoLink {
+                margin: 15px 0 5px;
+                float: right;
+            }
 
-			.button {
-				background-color: #555555;
-				border: none;
-				color: white;
-				margin-top: 4px;
-				padding: 8px 20px;
-				text-align: center;
-				text-decoration: none;
-				font-size: 16px;
-				float: right;
-			}
-		</style>
+            .button {
+                background-color: #555555;
+                border: none;
+                color: white;
+                margin-top: 4px;
+                padding: 8px 20px;
+                text-align: center;
+                text-decoration: none;
+                font-size: 16px;
+                float: right;
+            }
+        </style>
 
-		<div id="container" hidden$="{{!visible}}">
-			<div class="icon">
-				<gfs-carrier-icon carrier-name="{{_icon}}" country-code="{{countryCode}}"></gfs-carrier-icon>
-			</div>
+        <div id="container" hidden$="{{!visible}}">
+            <div class="icon">
+                <gfs-carrier-icon carrier-name="{{_icon}}" country-code="{{countryCode}}"></gfs-carrier-icon>
+            </div>
 
-			<div class="infoArea">
-				<h3>{{_title}}</h3>
-				<div class="infoText">{{_info}}</div>
-				<a class="infoLink" href="{{_url}}" target="_blank">More information</a>
-			</div>
-		</div>
-	</template>
+            <div class="infoArea">
+                <h3>{{_title}}</h3>
+                <div class="infoText">{{_info}}</div>
+                <a class="infoLink" href="{{_url}}" target="_blank">More information</a>
+            </div>
+        </div>
+    </template>
 
-	<script>
+    <script>
 
-		Polymer({
-			is: "gfs-carrier-info",
+        Polymer({
+            is: "gfs-carrier-info",
 
-			properties: {
-			    providerName: {
-			        type: String
-			    },
-			    countryCode: {
-			        type: String
-			    },
-			    visible: {
-			        type: Boolean,
-			        value: false
-			    },
-			    dpdTitle: {
-			        type: String,
-			        value: "DPD"
-			    },
-			    dpdInfoText: {
-			        type: String,
-			        value: "DPD is one of the UK's leading time-critical carriers and can satisfy all your distribution needs, whether your consignments are for the UK or elsewhere in the world. Integrating our own extensive UK network with our unrivalled ground-based service to Europe and Air Express service to the rest of the world, we are well placed to satisfy all your distribution and logistics needs."
-			    },
-			    dpdUrl: {
-			        type: String,
-			        value: "https://www.dpd.co.uk/"
-			    },
-			    dpdPickupTitle: {
-			        type: String,
-			        value: "DPD Pickup"
-			    },
-			    dpdPickupInfoText: {
-			        type: String,
-			        value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you. For peace of mind you will be required to provide a form of photo ID on collection. Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
-			    },
-			    dpdPickupUrl: {
-			        type: String,
-			        value: "https://www.dpd.co.uk/content/products_services/dpd_pickup.jsp"
-			    },
-				inpostTitle: {
-					type: String,
-					value: "Inpost Locker"
-				},
-				inpostInfoText: {
-					type: String,
-					value: "InPost has a national network of fully automated parcel lockers that are accessible 24/7, meaning no more queues or waiting in, enabling customers to collect, send and return parcels at their earliest convenience. All of InPost's 1,000 + lockers are located at a variety of safe and secure locations.  Don't forget to provide your mobile number at checkout so that InPost can tell you when your parcel is ready to be collected."
-				},
-				inpostUrl: {
-					type: String,
-					value: "https://inpost.co.uk"
-				},
-				doddleTitle: {
-					type: String,
-					value: "Doddle Store"
-				},
-				doddleInfoText: {
-					type: String,
-					value: "Doddle fits in with your life. No more waiting. No more missed deliveries.  Doddle stores are located in and around train stations across the UK. They’re open early until late, so you can send, collect or return your parcel whenever you’re passing.  Don't forget to provide your mobile number at checkout so that Doddle can tell you when your parcel is ready to be collected."
-				},
-				doddleUrl: {
-					type: String,
-					value: "https://www.doddle.com"
-				},
-				hermesTitle: {
-					type: String,
-					value: "Hermes ParcelShop"
-				},
-				hermesInfoText: {
-					type: String,
-					value: "Hermes ParcelShop provides you with a new, more flexible option for receiving your order. Hermes operate a network of over 4,500 nationwide ParcelShops which are open early till late, 7 days a week.  Don't forget to provide your mobile number at checkout so that Hermes can tell you when your parcel is ready to be collected."
-				},
-				hermesUrl: {
-					type: String,
-					value: "https://www.myhermes.co.uk"
-				},
-				collectplusTitle: {
-					type: String,
-					value: "Collect+ Store"
-				},
-				collectplusInfoText: {
-					type: String,
-					value: "Collect+ have thousands of conveniently located parcel stores across the UK, it has never been so easy pick up your orders.  Our store network is made up of over 5,800 newsagents, convenience stores, supermarkets and petrol stations, so wherever you are, there’s a good chance that one of our stores is nearby.  Don't forget to provide your mobile number at checkout so that Collect+ can tell you when your parcel is ready to be collected."
-				},
-				collectplusUrl: {
-					type: String,
-					value: "https://www.collectplus.co.uk"
-				},
-				_icon: {
-				    type: String,
-				    value: "dpd",
-				    computed: "_computeIcon(providerName, countryCode)"
-				},
-				_title: {
-				    type: String,
-				    computed: "_computeTitle(providerName, countryCode)"
-				},
-				_info: {
-				    type: String,
-				    computed: "_computeInfo(providerName)"
-				},
-				_url: {
-				    type: String,
-				    computed: "_computeUrl(providerName, countryCode)"
-				}
-			},
-			ready: function () {
-				window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
-				window.addEventListener('hide-collectionInfo', this.hideCollectionInfo.bind(this), false);
-			},
-			onDroppointChanged: function (e) {
-				this.set("droppointData", e.detail);
-				this.visible = this.droppointData.chosen;
-				this.providerName = this.droppointData.providerName;
-				this.countryCode = this.droppointData.geoLocation.countryCode;
+            properties: {
+                providerName: {
+                    type: String
+                },
+                countryCode: {
+                    type: String
+                },
+                visible: {
+                    type: Boolean,
+                    value: false
+                },
+                dpdTitle: {
+                    type: String,
+                    value: "DPD"
+                },
+                dpdInfoText: {
+                    type: String,
+                    value: "DPD is one of the UK's leading time-critical carriers and can satisfy all your distribution needs, whether your consignments are for the UK or elsewhere in the world. Integrating our own extensive UK network with our unrivalled ground-based service to Europe and Air Express service to the rest of the world, we are well placed to satisfy all your distribution and logistics needs."
+                },
+                dpdUrl: {
+                    type: String,
+                    value: "https://www.dpd.co.uk/"
+                },
+                dpdPickupTitle: {
+                    type: String,
+                    value: "DPD Pickup"
+                },
+                dpdPickupInfoText: {
+                    type: String,
+                    value: "DPD Pickup provides next day before noon delivery into your preferred delivery point for collection at a time convenient for you. For peace of mind you will be required to provide a form of photo ID on collection. Don't forget to provide your mobile number at checkout so that DPD can tell you when your parcel is ready to be collected."
+                },
+                dpdPickupUrl: {
+                    type: String,
+                    value: "https://www.dpd.co.uk/content/products_services/dpd_pickup.jsp"
+                },
+                inpostTitle: {
+                    type: String,
+                    value: "Inpost Locker"
+                },
+                inpostInfoText: {
+                    type: String,
+                    value: "InPost has a national network of fully automated parcel lockers that are accessible 24/7, meaning no more queues or waiting in, enabling customers to collect, send and return parcels at their earliest convenience. All of InPost's 1,000 + lockers are located at a variety of safe and secure locations.  Don't forget to provide your mobile number at checkout so that InPost can tell you when your parcel is ready to be collected."
+                },
+                inpostUrl: {
+                    type: String,
+                    value: "https://inpost.co.uk"
+                },
+                doddleTitle: {
+                    type: String,
+                    value: "Doddle Store"
+                },
+                doddleInfoText: {
+                    type: String,
+                    value: "Doddle fits in with your life. No more waiting. No more missed deliveries.  Doddle stores are located in and around train stations across the UK. They’re open early until late, so you can send, collect or return your parcel whenever you’re passing.  Don't forget to provide your mobile number at checkout so that Doddle can tell you when your parcel is ready to be collected."
+                },
+                doddleUrl: {
+                    type: String,
+                    value: "https://www.doddle.com"
+                },
+                hermesTitle: {
+                    type: String,
+                    value: "Hermes ParcelShop"
+                },
+                hermesInfoText: {
+                    type: String,
+                    value: "Hermes ParcelShop provides you with a new, more flexible option for receiving your order. Hermes operate a network of over 4,500 nationwide ParcelShops which are open early till late, 7 days a week.  Don't forget to provide your mobile number at checkout so that Hermes can tell you when your parcel is ready to be collected."
+                },
+                hermesUrl: {
+                    type: String,
+                    value: "https://www.myhermes.co.uk"
+                },
+                collectplusTitle: {
+                    type: String,
+                    value: "Collect+ Store"
+                },
+                collectplusInfoText: {
+                    type: String,
+                    value: "Collect+ have thousands of conveniently located parcel stores across the UK, it has never been so easy pick up your orders.  Our store network is made up of over 5,800 newsagents, convenience stores, supermarkets and petrol stations, so wherever you are, there’s a good chance that one of our stores is nearby.  Don't forget to provide your mobile number at checkout so that Collect+ can tell you when your parcel is ready to be collected."
+                },
+                collectplusUrl: {
+                    type: String,
+                    value: "https://www.collectplus.co.uk"
+                },
+                _icon: {
+                    type: String,
+                    value: "dpd",
+                    computed: "_computeIcon(providerName, countryCode)"
+                },
+                _title: {
+                    type: String,
+                    computed: "_computeTitle(providerName, countryCode)"
+                },
+                _info: {
+                    type: String,
+                    computed: "_computeInfo(providerName)"
+                },
+                _url: {
+                    type: String,
+                    computed: "_computeUrl(providerName, countryCode)"
+                }
+            },
+            ready: function () {
+                window.addEventListener('droppoint-changed', this.onDroppointChanged.bind(this), false);
+                window.addEventListener('hide-collectionInfo', this.hideCollectionInfo.bind(this), false);
+            },
+            onDroppointChanged: function (e) {
+                this.set("droppointData", e.detail);
+                this.visible = this.droppointData.chosen;
+                this.providerName = this.droppointData.providerName;
+                this.countryCode = this.droppointData.geoLocation.countryCode;
 
-				if (this.providerName === 'DPD') {
-				    this.providerName = 'dpdpickupinfo'
-				}
-			},
-			hideCollectionInfo: function() {
-				this.visible = false;
-			},
-			_computeIcon: function (providerName, countryCode) {
-			    return this._icon = providerName.replace(/[\s\_\-]/g, '').toLowerCase();
-			},
-			_computeTitle: function (providerName, countryCode) {
-			    switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
-			        case "dpd":
-			            return this.dpdTitle;
-			        case "dpdpickup":
-			        case "dpdpickupinfo":
-			            return this.dpdPickupTitle;
-					case "inpost":
-						return this.inpostTitle;
-					case "doddle":
-						return this.doddleTitle;
-					case "hermes":
-					    if (countryCode === "FR" || countryCode === "BE" || countryCode === "ES") {
-					        return this.hermesTitle = "Mondial Relay";
-					    }
-					    else {
-					        return this.hermesTitle;
-					    }
-					case "collectplus":
-						return this.collectplusTitle;
-					default:
-						return "Unknown";
-				}
-			},
-			_computeInfo: function (providerName) {
-			    switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
-			        case "dpd":
-			            return this.dpdInfoText;
-			        case "dpdpickup":
-			        case "dpdpickupinfo":
-			            return this.dpdPickupInfoText;
-				    case "inpost":
-						return this.inpostInfoText;
-				    case "doddle":
-						return this.doddleInfoText;
-				    case "hermes":
-						return this.hermesInfoText;
-				    case "collectplus":
-						return this.collectplusInfoText;
-					default:
-						return "Unknown";
-				}
-			},
-			_computeUrl: function (providerName, countryCode) {
-			    switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
-			        case "dpd":
-			            return this.dpdUrl;
-			        case "dpdpickup":
-			        case "dpdpickupinfo":
-			            return this.dpdPickupUrl;
-				    case "inpost":
-						return this.inpostUrl;
-				    case "doddle":
-						return this.doddleUrl;
-				    case "hermes":
-						if(countryCode === "FR") {
-							return this.hermesUrl = "http://www.mondialrelay.fr/"
-						}
-						else if(countryCode === "BE") {
-							return this.hermesUrl = "http://www.mondialrelay.be/fr-BE/";
-						}
-						else if(countryCode === "ES") {
-							return this.hermesUrl = "http://www.puntopack.es/";
-						}
-						else {
-							return this.hermesUrl
-						}
-				    case "collectplus":
-						return this.collectplusUrl
-					default:
-						return "";
-				}
-			}
-		});
-	</script>
+                if (this.providerName === 'DPD') {
+                    this.providerName = 'dpdpickupinfo'
+                }
+            },
+            hideCollectionInfo: function() {
+                this.visible = false;
+            },
+            _computeIcon: function (providerName, countryCode) {
+                return this._icon = providerName.replace(/[\s\_\-]/g, '').toLowerCase();
+            },
+            _computeTitle: function (providerName, countryCode) {
+                switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
+                    case "dpd":
+                        return this.dpdTitle;
+                    case "dpdpickup":
+                    case "dpdpickupinfo":
+                        return this.dpdPickupTitle;
+                    case "inpost":
+                        return this.inpostTitle;
+                    case "doddle":
+                        return this.doddleTitle;
+                    case "hermes":
+                        if (countryCode === "FR" || countryCode === "BE" || countryCode === "ES") {
+                            return this.hermesTitle = "Mondial Relay";
+                        }
+                        else {
+                            return this.hermesTitle;
+                        }
+                    case "collectplus":
+                        return this.collectplusTitle;
+                    default:
+                        return "Unknown";
+                }
+            },
+            _computeInfo: function (providerName) {
+                switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
+                    case "dpd":
+                        return this.dpdInfoText;
+                    case "dpdpickup":
+                    case "dpdpickupinfo":
+                        return this.dpdPickupInfoText;
+                    case "inpost":
+                        return this.inpostInfoText;
+                    case "doddle":
+                        return this.doddleInfoText;
+                    case "hermes":
+                        return this.hermesInfoText;
+                    case "collectplus":
+                        return this.collectplusInfoText;
+                    default:
+                        return "Unknown";
+                }
+            },
+            _computeUrl: function (providerName, countryCode) {
+                switch (providerName.replace(/[\s\_\-]/g, '').toLowerCase()) {
+                    case "dpd":
+                        return this.dpdUrl;
+                    case "dpdpickup":
+                    case "dpdpickupinfo":
+                        return this.dpdPickupUrl;
+                    case "inpost":
+                        return this.inpostUrl;
+                    case "doddle":
+                        return this.doddleUrl;
+                    case "hermes":
+                        if(countryCode === "FR") {
+                            return this.hermesUrl = "http://www.mondialrelay.fr/"
+                        }
+                        else if(countryCode === "BE") {
+                            return this.hermesUrl = "http://www.mondialrelay.be/fr-BE/";
+                        }
+                        else if(countryCode === "ES") {
+                            return this.hermesUrl = "http://www.puntopack.es/";
+                        }
+                        else {
+                            return this.hermesUrl
+                        }
+                    case "collectplus":
+                        return this.collectplusUrl
+                    default:
+                        return "";
+                }
+            }
+        });
+    </script>
 </dom-module>
